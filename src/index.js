@@ -11,7 +11,7 @@ app.use(express.json()); //permite analizar automáticamente el cuerpo de las so
 const telegramRoutes = require("./routes/telegram.routes");
 app.use(telegramRoutes);
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Servidor backend escuchando en el puerto ${PORT}`);
 });
