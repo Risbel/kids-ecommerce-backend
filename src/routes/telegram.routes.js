@@ -8,6 +8,6 @@ router.get("/", (req, res) => {
 
   res.send(response);
 });
-router.post("/contact", sendMessage);
+router.post("/send-message", sendMessage);
 
 module.exports = router;

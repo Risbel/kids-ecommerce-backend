@@ -14,9 +14,7 @@ const sendMessage = async (req, res) => {
     });
 
     res.sendStatus(200);
-    res.sendMessage("Successful");
   } catch (error) {
-    res.sendMessage("Error");
     res.sendStatus(500);
   }
 };
