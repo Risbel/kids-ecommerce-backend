@@ -3,6 +3,11 @@ const { sendMessage } = require("../controllers/telegram.controllers");
 
 const router = Router();
 
-router.post("/order", sendMessage);
+router.get("/", (req, res) => {
+  const response = "I am the kids-ecommerce database";
+
+  res.send(response);
+});
+router.post("/contact", sendMessage);
 
 module.exports = router;

@@ -2,9 +2,9 @@ const axios = require("axios");
 const { telegram } = require("../config");
 
 const sendMessage = async (req, res) => {
-  const { nombre, email, mensaje } = req.body;
+  const { name, email, message } = req.body;
   try {
-    const mensajeTelegram = `Nombre: ${nombre}\nEmail: ${email}\nMensaje: ${mensaje}`;
+    const mensajeTelegram = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
 
     const telegramAPIUrl = `https://api.telegram.org/bot${telegram.token}/sendMessage`;
 
@@ -13,10 +13,10 @@ const sendMessage = async (req, res) => {
       text: mensajeTelegram,
     });
 
-    console.log("Mensaje enviado a Telegram con éxito");
     res.sendStatus(200);
+    res.sendMessage("Successful");
   } catch (error) {
-    console.error("Error al enviar el mensaje a Telegram:", error);
+    res.sendMessage("Error");
     res.sendStatus(500);
   }
 };
