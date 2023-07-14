@@ -1,15 +1,26 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
-const PurchaseProduct = require("./PurchaseProduct");
 
 const Product = sequelize.define("Product", {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     primaryKey: true,
-    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
+  },
+  slug: {
+    type: DataTypes.STRING,
+  },
+  sexOrAge: {
+    type: DataTypes.STRING,
+  },
+  rating: {
+    type: DataTypes.DECIMAL,
+    validate: {
+      min: 0,
+      max: 5,
+    },
   },
   description: {
     type: DataTypes.STRING,
@@ -20,19 +31,6 @@ const Product = sequelize.define("Product", {
   stock: {
     type: DataTypes.INTEGER,
   },
-});
-
-Product.hasMany(PurchaseProduct, {
-  foreignKey: {
-    name: "productId",
-    allowNull: false,
-  },
-  sourceKey: "id",
-});
-
-PurchaseProduct.belongsTo(Product, {
-  foreignKey: "productId",
-  targetKey: "id",
 });
 
 module.exports = Product;

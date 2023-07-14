@@ -1,8 +1,8 @@
 const { Router } = require("express"); //funcion
 const router = Router(); //creo una instancia
-const { createUsers, getUsers, updateUser, deleteUser, getUser } = require("../controllers/users.controller");
+const { createUser, getUsers, updateUser, deleteUser, getUser } = require("../controllers/users.controllers");
 
-router.post("/user", createUsers);
+router.post("/user", createUser);
 router.get("/user", getUsers);
 router.put("/user/:id", updateUser);
 router.delete("/user/:id", deleteUser);

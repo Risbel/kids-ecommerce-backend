@@ -1,14 +1,15 @@
 const User = require("../models/User");
 
-const createUsers = async (req, res) => {
+const createUser = async (req, res) => {
   try {
-    const { name, lastName, email, phone } = req.body;
+    const { name, lastName, email, phone, imageUrl } = req.body;
 
     const newUser = await User.create({
-      name: name,
-      lastName: lastName,
-      email: email,
-      phone: phone,
+      name,
+      lastName,
+      email,
+      phone,
+      imageUrl,
     });
 
     res.json(newUser);
@@ -37,7 +38,7 @@ const getUser = async (req, res) => {
     });
 
     if (!user) {
-      res.status(404).json({ message: "Projest does not exist" });
+      res.status(404).json({ message: "User does not exist" });
     }
 
     res.json(user);
@@ -49,13 +50,14 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, lastName, email, phone } = req.body;
+    const { name, lastName, email, phone, imageUrl } = req.body;
 
     const user = await User.findByPk(id);
     user.name = name;
     user.lastName = lastName;
     user.email = email;
     user.phone = phone;
+    user.imageUrl = imageUrl;
     await user.save;
 
     res.json(user);
@@ -80,4 +82,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { createUsers, getUsers, updateUser, deleteUser, getUser };
+module.exports = { createUser, getUsers, updateUser, deleteUser, getUser };

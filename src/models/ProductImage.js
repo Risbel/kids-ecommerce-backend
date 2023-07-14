@@ -2,16 +2,22 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database.js");
 const Product = require("./Product.js");
 
-const ProductImage = sequelize.define("ProductImage", {
-  id: {
-    type: DataTypes.UUID,
-    primaryKey: true,
+const ProductImage = sequelize.define(
+  "ProductImage",
+  {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  imageUrl: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    createdAt: false,
+  }
+);
 
 Product.hasMany(ProductImage, {
   foreignKey: {
