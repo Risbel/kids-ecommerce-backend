@@ -8,8 +8,10 @@ const {
   getProduct,
 } = require("../controllers/products.controllers");
 
-router.create("/product", createProduct);
+router.post("/product", createProduct);
 router.get("/product", getProducts);
-router.update("/product/:id", updateProduct);
+router.put("/product/:id", updateProduct);
 router.delete("/product/id", deleteProduct);
 router.get("/product/:id", getProduct);
+
+module.exports = router;

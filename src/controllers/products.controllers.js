@@ -40,7 +40,7 @@ const updateProduct = async (req, res) => {
     product.description = description;
     product.price = price;
     product.stock = stock;
-    await product.save;
+    await product.save();
 
     res.json(product);
   } catch (error) {

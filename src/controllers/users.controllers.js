@@ -58,7 +58,7 @@ const updateUser = async (req, res) => {
     user.email = email;
     user.phone = phone;
     user.imageUrl = imageUrl;
-    await user.save;
+    await user.save();
 
     res.json(user);
   } catch (error) {

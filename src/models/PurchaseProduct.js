@@ -8,10 +8,12 @@ const PurchaseProduct = sequelize.define(
   {
     id: {
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
     purchaseId: {
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       references: {
         model: Purchase,
@@ -20,6 +22,7 @@ const PurchaseProduct = sequelize.define(
     },
     productId: {
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       references: {
         model: Product,
