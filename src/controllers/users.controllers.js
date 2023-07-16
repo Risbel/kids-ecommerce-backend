@@ -1,4 +1,6 @@
+const Purchase = require("../models/Purchase");
 const User = require("../models/User");
+const PurchaseProduct = require("../models/PurchaseProduct");
 
 const createUser = async (req, res) => {
   try {
@@ -20,8 +22,8 @@ const createUser = async (req, res) => {
 
 const getUsers = async (req, res) => {
   try {
-    const Users = await User.findAll();
-    res.json(Users);
+    const users = await User.findAll();
+    res.json(users);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -82,4 +84,38 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getUsers, updateUser, deleteUser, getUser };
+const getUserPurchases = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const purchases = await Purchase.findAll({
+      where: { userId: id },
+    });
+
+    res.json(purchases);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const getUserPurchasesProducts = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const purchses = await Purchase.findAll({
+      where: { userId: id },
+    });
+
+    const purchseId = purchses.map((purchse) => purchse.id);
+
+    const products = await PurchaseProduct.findAll({
+      where: { purchaseId: purchseId },
+    });
+
+    res.json(products);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createUser, getUsers, updateUser, deleteUser, getUser, getUserPurchases, getUserPurchasesProducts };

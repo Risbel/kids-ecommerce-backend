@@ -13,6 +13,7 @@ const Product = sequelize.define("Product", {
   },
   slug: {
     type: DataTypes.STRING,
+    unique: { msg: "the slug should be unique" },
     allowNull: false,
   },
   sexOrAge: {
