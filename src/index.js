@@ -1,11 +1,12 @@
 const app = require("./app");
 const sequelize = require("./database/database");
 
-require("./models/User.js");
-require("./models/Product.js");
-require("./models/Purchase.js");
-require("./models/ProductImage.js");
-require("./models/PurchaseProduct.js");
+require("./models/User");
+require("./models/Role");
+require("./models/Product");
+require("./models/Purchase");
+require("./models/ProductImage");
+require("./models/PurchaseProduct");
 
 const PORT = process.env.PORT || 4000;
 

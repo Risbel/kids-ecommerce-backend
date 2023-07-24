@@ -13,4 +13,5 @@ module.exports = {
     token: process.env.TELEGRAM_TOKEN,
     id: process.env.TELEGRAM_ID,
   },
+  SECRET: process.env.SECRET_TOKEN,
 };
