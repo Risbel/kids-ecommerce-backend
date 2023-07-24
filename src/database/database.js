@@ -14,4 +14,8 @@ const sequelize = new Sequelize(db.connectionString, {
   },
 });
 
+//config para trabajar en local
+// const sequelize = new Sequelize(db.database, db.user, db.password, {
+//   host: db.host,
+
 module.exports = sequelize;

@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 4000;
 
 async function main() {
   try {
-    await sequelize.sync({ alter: true, logging: false });
+    await sequelize.sync({ force: true, logging: false });
 
     app.get("/", (req, res) => {
       res.json("hola");

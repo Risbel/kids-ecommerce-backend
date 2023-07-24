@@ -12,8 +12,6 @@ const app = express();
 
 createRoles(); //crear roles al iniciar el servidor
 
-const PORT = "https://kids-ecommerce.vercel.app" || "http://localhost:3000";
-
 app.use(
   cors({
     origin: ["https://kids-ecommerce.vercel.app"], // Asegúrate de que el origen coincida con el cliente en el host 3000
