@@ -3,7 +3,8 @@ config(); //la ejecuto para cargar mis variables de entorno definidas en un arch
 
 module.exports = {
   db: {
-    user: process.env.DB_USER,
+    connectionString: process.env.POSTGRES_URL + "?sslmode=require", //para produccion
+    user: process.env.DB_USER, //de aqui para abajo es para desarrollo
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,

@@ -12,9 +12,11 @@ const app = express();
 
 createRoles(); //crear roles al iniciar el servidor
 
+const PORT = "https://kids-ecommerce.vercel.app" || "http://localhost:3000";
+
 app.use(
   cors({
-    origin: "*", // Asegúrate de que el origen coincida con el cliente en el host 3000
+    origin: ["https://kids-ecommerce.vercel.app"], // Asegúrate de que el origen coincida con el cliente en el host 3000
     credentials: true, // Habilita las credenciales para permitir el envío de cookies
   })
 );
