@@ -14,7 +14,7 @@ createRoles(); //crear roles al iniciar el servidor
 
 app.use(
   cors({
-    origin: ["https://kids-ecommerce.vercel.app"], // Asegúrate de que el origen coincida con el cliente en el host 3000
+    origin: "*", // Asegúrate de que el origen coincida con el cliente en el host 3000
     credentials: true, // Habilita las credenciales para permitir el envío de cookies
   })
 );

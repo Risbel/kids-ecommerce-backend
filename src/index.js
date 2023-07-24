@@ -14,6 +14,9 @@ async function main() {
   try {
     await sequelize.sync({ alter: true, logging: false });
 
+    app.get("/", (req, res) => {
+      res.json("hola");
+    });
     app.listen(PORT, () => {
       console.log(`Servidor backend escuchando en el puerto ${PORT}`);
     });
