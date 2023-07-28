@@ -14,5 +14,8 @@ module.exports = {
     token: process.env.TELEGRAM_TOKEN,
     id: process.env.TELEGRAM_ID,
   },
-  SECRET: process.env.SECRET_TOKEN,
+  origin: {
+    client: process.env.URL_ALLOWED_CLIENT,
+  },
+  secretSignJwt: process.env.SECRET_TOKEN,
 };

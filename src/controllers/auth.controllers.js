@@ -6,7 +6,7 @@ const config = require("../config");
 const Role = require("../models/Role");
 
 const signup = async (req, res) => {
-  const { name, lastName, email, phone, password, imageUrl } = req.body;
+  const { name, lastName, email, phone, imageUrl, password } = req.body;
 
   const hashedPassword = await hash(password, 10);
 
@@ -19,16 +19,34 @@ const signup = async (req, res) => {
     phone,
     imageUrl,
     password: hashedPassword,
-    role: roleId,
+    roleId: roleId,
   });
 
   const savedUser = await newUser.save();
 
-  const token = sign({ id: savedUser.id }, config.SECRET, {
-    expiresIn: 86400,
+  const token = sign(
+    {
+      id: savedUser.id,
+      email: savedUser.email,
+      username: savedUser.name,
+    },
+    config.secretSignJwt,
+    {
+      expiresIn: 86400,
+    }
+  );
+
+  const serialized = serialize("myTokenName", token, {
+    httpOnly: false,
+    secure: true,
+    sameSite: "lax",
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+    domain: "kids-ecommerce.vercel.app",
+    path: "/",
   });
 
-  res.status(200).json(token);
+  res.cookie(serialized);
+  res.status(200).json("succesfull");
 };
 
 const login = async (req, res) => {
@@ -60,15 +78,15 @@ const login = async (req, res) => {
       email: user.email,
       username: user.name,
     },
-    config.SECRET
+    config.secretSignJwt
   );
 
   const serialized = serialize("myTokenName", token, {
-    httpOnly: true,
-    secure: false,
-    sameSite: "none",
+    httpOnly: false,
+    secure: true,
+    sameSite: "lax",
     maxAge: 1000 * 60 * 60 * 24 * 30,
-    domain: "localhost",
+    domain: "kids-ecommerce.vercel.app",
     path: "/",
   });
 
@@ -95,14 +113,12 @@ const logout = (req, res) => {
   }
 
   try {
-    verify(myToken, config.SECRET);
-
     const serialized = serialize("myTokenName", null, {
-      httpOnly: true,
-      secure: false,
+      httpOnly: false,
+      secure: true,
       sameSite: "none",
       maxAge: 0,
-      domain: "localhost",
+      domain: "kids-ecommerce.vercel.app",
       path: "/",
     });
 

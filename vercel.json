@@ -12,12 +12,8 @@
 		"headers": {
 		  "Access-Control-Allow-Origin": "https://kids-ecommerce.vercel.app",
 		  "Access-Control-Allow-Methods": "OPTIONS, GET, POST, PUT, DELETE",
-		  "Access-Control-Allow-Headers": "Content-Type"		  
+		  "Access-Control-Allow-Headers": "Content-Type"
 		}
-	  },
-	  {
-		"src": "/(.*)",
-		"dest": "src/index.js"
 	  }
 	]
-}
+  }
