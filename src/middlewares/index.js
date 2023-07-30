@@ -1,3 +1,3 @@
-const verifyToken = require("./authorizationJwt");
+const { verifyToken, isModerator, isAdmin } = require("./authorizationJwt");
 
-module.exports = { verifyToken };
+module.exports = { verifyToken, isModerator, isAdmin };

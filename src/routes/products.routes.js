@@ -7,12 +7,12 @@ const {
   deleteProduct,
   getProduct,
 } = require("../controllers/products.controllers");
-const { verifyToken } = require("../middlewares");
+const { verifyToken, isModerator } = require("../middlewares");
 
-router.post("/product", verifyToken, createProduct);
+router.post("/product", [verifyToken, isModerator], createProduct);
 router.get("/product", getProducts);
-router.put("/product/:id", updateProduct);
-router.delete("/product/id", deleteProduct);
+router.put("/product/:id", [verifyToken, isModerator], updateProduct);
+router.delete("/product/id", [verifyToken, isModerator], deleteProduct);
 router.get("/product/:id", getProduct);
 
 module.exports = router;
